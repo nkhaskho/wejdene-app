@@ -1,3 +1,4 @@
+import { FormResponse } from './../../../models/form-response';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/services/categories/category.service';
@@ -11,6 +12,7 @@ export class CategoriesComponent implements OnInit {
 
   categories: Category[] = [];
   newCategory = new Category();
+  formResponse = new FormResponse();
 
   constructor(private categoryService: CategoryService) { }
 
@@ -26,7 +28,19 @@ export class CategoriesComponent implements OnInit {
 
   addCategory() {
     this.categoryService.addCategory(this.newCategory).subscribe(
-      res => this.getCategories()
+      res => {
+        this.newCategory = new Category();
+        this.formResponse.setMessage('Category added.')
+        this.getCategories()
+      },
+      err => this.formResponse.setError('Error while adding category!')
+    )
+  }
+
+  async deleteCategory(id: number) {
+    console.log(id);
+    await this.categoryService.deleteCategory(id).subscribe(
+      async res => await this.getCategories()
     )
   }
 

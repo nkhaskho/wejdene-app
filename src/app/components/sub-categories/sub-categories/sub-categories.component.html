@@ -1,1 +1,61 @@
-<p>sub-categories works!</p>
+<div class="row">
+    <div class="col-md-4 offset-md-1">
+        <!-- Search and filters -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Sub-Categories</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Add new Sub-category</h6>        
+                <br>
+                <div class="mb-3">
+                    <label class="form-label">Category (parent)</label>
+                    <select class="form-select" [(ngModel)]="newSubCategory.category" aria-label="Default select example">
+                        <option *ngFor="let category of categories" value="{{category.id}}">
+                            {{ category.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Sub-Category name</label>
+                  <input type="email" [(ngModel)]="newSubCategory.name" class="form-control" aria-describedby="textHelp">
+                </div>
+
+                <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                    {{ formResponse.error }}
+                </div>
+                <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                    {{ formResponse.error }}
+                </div>
+                <div class="text-end">
+                    <button type="submit" (click)="addSubCategory()" class="btn btn-success">Add SubCategory</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Category</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subCategory of subcategories">
+                <th scope="row">{{ subCategory.id }}</th>
+                <td>{{ subCategory.category }}</td>
+                <td>{{ subCategory.name }}</td>
+                <td>
+                    <!-- buttons here -->
+                    <!-- buttons here -->
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-secondary" type="button">Edit</button>
+                        <button class="btn btn-danger" (clik)="deleteSubCategory(subCategory.id)" type="button">Delete</button>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

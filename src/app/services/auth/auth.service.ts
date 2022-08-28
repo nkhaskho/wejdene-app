@@ -19,6 +19,7 @@ export class AuthService {
 
   authenticate(token: string) {
     let payload = this.decodeJwt(token);
+    localStorage.setItem('token', token)   
     localStorage.setItem('id', payload['id']),
     localStorage.setItem('username', payload['username']),
     localStorage.setItem('email', payload['email']),

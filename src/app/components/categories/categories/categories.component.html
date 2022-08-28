@@ -10,6 +10,12 @@
                   <label class="form-label">Category name</label>
                   <input type="email" [(ngModel)]="newCategory.name" class="form-control" aria-describedby="textHelp">
                 </div>
+                <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
+                  {{ formResponse.message }}
+                </div>
+                <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                  {{ formResponse.error }}
+                </div>
                 <div class="text-end">
                     <button type="submit" (click)="addCategory()" class="btn btn-success">Add category</button>
                 </div>
@@ -31,6 +37,10 @@
                 <td>{{ category.name }}</td>
                 <td>
                     <!-- buttons here -->
+                    <div class="d-grid gap-2 d-md-block">
+                      <button class="btn btn-secondary" type="button">Edit</button>
+                      <button class="btn btn-danger" (clik)="deleteCategory(category.id)" type="button">Delete</button>
+                    </div>
                 </td>
               </tr>
             </tbody>

@@ -43,8 +43,8 @@
               <label class="form-label">Phone</label>
               <input class="form-control" [(ngModel)]="user.phone ">
             </div>
-            <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
-              {{ formResponse.error }}
+            <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
+              {{ formResponse.message }}
             </div>
             <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
               {{ formResponse.error }}

@@ -21,10 +21,12 @@ export class CategoryService {
     return this.http.post<Category>(this.endpoint, category);
   }
 
-  updateCategory() {}
+  updateCategory(category: Category) {
+    return this.http.put(`${this.endpoint}/${category.id}`, category)
+  }
 
-  getCategoryById() {}
-
-  deleteCategory() {}
+  deleteCategory(id: number) {
+    return this.http.delete(`${this.endpoint}/${id}`)
+  }
 
 }

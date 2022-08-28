@@ -53,15 +53,7 @@ const routes: Routes = [
     component: CategoriesComponent
   },
   {
-    path: 'categories/:id',
-    component: CategoriesComponent
-  },
-  {
     path: 'subcategories',
-    component: SubCategoriesComponent
-  },
-  {
-    path: 'subcategories/:id',
     component: SubCategoriesComponent
   }
 ];

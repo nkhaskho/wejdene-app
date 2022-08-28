@@ -29,11 +29,11 @@ export class EditUserComponent implements OnInit {
 
   }
 
-  save() {
-    console.log(this.user);
+  async save() {
+    //console.log(this.user);
     if (this.user.id > 0) {
       // Update existing user
-      this.userService.updateUser(this.user).subscribe(
+      await this.userService.updateUser(this.user).subscribe(
         res => {
           this.user = res;
           this.formResponse.setMessage('Update saved.');
@@ -42,12 +42,13 @@ export class EditUserComponent implements OnInit {
     }
     else {
       // add new user
-      this.userService.addUser(this.user).subscribe(
+      await this.userService.addUser(this.user).subscribe(
         res => {
           this.user = new User();
           this.formResponse.setMessage('User added successfully.');
           this.router.navigate([`users/edit/${res.id}`])
-        }
+        },
+        err => this.formResponse.setError('Form validation error')
       )
     }
   }
