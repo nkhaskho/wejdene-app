@@ -50,7 +50,7 @@ export class SubCategoriesComponent implements OnInit {
   async deleteSubCategory(id: number) {
     console.log(id);
     this.subCategoryService.deleteSubcategory(id).subscribe(
-      async res => await this.getAllSubCategories()
+      res => this.getAllSubCategories()
     )
   }
 
