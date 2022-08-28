@@ -1,1 +1,39 @@
-<p>edit-ticket works!</p>
+  
+<div class="row">
+    <div class="col-md-4 offset-md-1">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Tickets</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Ticket information</h6>       
+              <br>
+              <div class="mb-3">
+                  <label class="form-label">Title</label>
+                  <input [(ngModel)]="ticket.title" class="form-control">
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Description</label>
+                  <textarea [(ngModel)]="ticket.description" rows="3" class="form-control">
+                  </textarea>
+              </div>
+              <div class="mb-3">
+                  <label class="form-label">Status</label>
+                  <select class="form-select" [(ngModel)]="ticket.status" aria-label="Default select example">
+                      <option value="on_going">On-going</option>
+                      <option value="in_progress">In progress</option>
+                      <option value="closed">Closed</option>
+                  </select>
+              </div>
+              <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
+                  {{ formResponse.message }}
+              </div>
+              <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                  {{ formResponse.error }}
+              </div>
+              <div class="text-end">
+                    <button type="submit" (click)="save()" class="btn btn-success">Save</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  

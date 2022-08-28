@@ -1,3 +1,5 @@
+import { FormResponse } from './../../../models/form-response';
+import { Ticket } from './../../../models/ticket';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditTicketComponent implements OnInit {
 
+  formResponse = new FormResponse();
+
+  ticket = new Ticket();
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  save() {}
 
 }
