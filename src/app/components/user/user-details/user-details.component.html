@@ -1,0 +1,30 @@
+<div class="row">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="/users">Users</a></li>
+          <li class="breadcrumb-item active" aria-current="page">User details</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><b>{{ user.username }}</b></h4>
+              <h4><span *ngIf="user.role=='admin'" class="badge bg-success">Admin</span></h4>
+              <h4><span *ngIf="user.role=='agent'" class="badge bg-primary">Agent</span></h4>
+              <h4><span *ngIf="user.role=='user'" class="badge bg-secondary">Client</span></h4>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                {{ user.email }}
+              </li>
+              <li class="list-group-item">{{ user.phone }}</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Edit user information</a>
+            </div>
+          </div>
+    </div>
+</div>
