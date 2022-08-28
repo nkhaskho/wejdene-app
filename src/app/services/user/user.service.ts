@@ -1,51 +1,36 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import { User } from 'src/app/models/user';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  USERS: User[] = [
-    {
-      id: 1,
-      username: "nkhaskho",
-      email: "nkhaskho@email.com",
-      password: "",
-      role: "admin",
-      phone: 12345678
-    },
-    {
-      id: 2,
-      username: "wejdene",
-      email: "wejdene@email.com",
-      password: "",
-      role: "agent",
-      phone: 12345678
-    },
-    {
-      id: 2,
-      username: "foulen",
-      email: "foulen@email.com",
-      password: "",
-      role: "client",
-      phone: 12345678
-    }
-  ]
+  endpoint = environment.API_URL + '/api/users';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getUsers() {
-    // todo
-    return this.USERS;
+    return this.http.get<User[]>(this.endpoint);
   }
 
   getUserById(id: number) {
-    // todo
-    for (let i = 0; i < this.USERS.length; i++) {
-      const user = this.USERS[i];
-      if (user.id == id) { return user }
-    }
-    return new User();
+    return this.http.get<User>(`${this.endpoint}/${id}`);
   }
+
+  addUser(user: User) {
+    return this.http.post<User>(this.endpoint, user);
+  }
+
+  updateUser(user: User) {
+    return this.http.put<User>(`${this.endpoint}/${user.id}`, user);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete(`${this.endpoint}/${id}`);
+  }
+
 }

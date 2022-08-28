@@ -10,14 +10,16 @@ import { UserService } from 'src/app/services/user/user.service';
 export class UsersComponent implements OnInit {
 
   users: User[] = [];
-  loggedUser = new User();
+  appStorage = localStorage;
 
   constructor(private userService: UserService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   search() {
-    this.users = this.userService.getUsers();
+    this.userService.getUsers().subscribe(
+      res => this.users = res
+    )
   }
 
 }

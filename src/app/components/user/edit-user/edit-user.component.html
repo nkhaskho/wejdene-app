@@ -18,28 +18,39 @@
             <h6 *ngIf="user.id>0" class="card-subtitle mb-2 text-muted">Update User</h6>       
             <br>
             <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input type="email" [(ngModel)]="user.username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text text-info">Will be used for application access.</div>
+            </div>
+            <div class="mb-3">
               <label class="form-label">Email address</label>
               <input type="email" [(ngModel)]="user.email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
-            <div class="mb-3">
+            <div *ngIf="user.id==0" class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" [(ngModel)]="user.password" class="form-control" id="exampleInputPassword1" disabled>
+              <input type="password" [(ngModel)]="user.password" class="form-control" id="exampleInputPassword1">
             </div>
             <div class="mb-3">
                 <label class="form-label">Role</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option value="1">Collaborator</option>
-                    <option value="2">Agent</option>
-                    <option value="3">Admin</option>
+                <select class="form-select" [(ngModel)]="user.role" aria-label="Default select example">
+                    <option value="user">Collaborator</option>
+                    <option value="agent">Agent</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="mb-3">
               <label class="form-label">Phone</label>
               <input class="form-control" [(ngModel)]="user.phone ">
             </div>
+            <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+              {{ formResponse.error }}
+            </div>
+            <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+              {{ formResponse.error }}
+            </div>
             <div class="text-end">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" (click)="save()" class="btn btn-success">Save</button>
             </div>
         </div>
     </div>

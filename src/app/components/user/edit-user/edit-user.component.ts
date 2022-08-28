@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormResponse } from 'src/app/models/form-response';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -10,17 +11,45 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class EditUserComponent implements OnInit {
 
+  formResponse = new FormResponse();
+
   user = new User();
 
   constructor(private userService: UserService,
+              private router: Router,
               private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    let userId = this.activatedRoute.snapshot.params['id'];
+  async ngOnInit() {
+    let userId = await this.activatedRoute.snapshot.params['id'];
     if (userId != 'new') {
-      this.user = this.userService.getUserById(parseInt(userId))
+      await this.userService.getUserById(parseInt(userId)).subscribe(
+        res => this.user = res
+      )
     }
 
+  }
+
+  save() {
+    console.log(this.user);
+    if (this.user.id > 0) {
+      // Update existing user
+      this.userService.updateUser(this.user).subscribe(
+        res => {
+          this.user = res;
+          this.formResponse.setMessage('Update saved.');
+        }
+      )
+    }
+    else {
+      // add new user
+      this.userService.addUser(this.user).subscribe(
+        res => {
+          this.user = new User();
+          this.formResponse.setMessage('User added successfully.');
+          this.router.navigate([`users/edit/${res.id}`])
+        }
+      )
+    }
   }
 
 }
