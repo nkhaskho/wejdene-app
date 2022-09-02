@@ -5,4 +5,5 @@ export class Ticket {
     createdAt: string = "";
     closedAt: string = "";
     status: string = "";
+    createdBy: number = 0;
 }

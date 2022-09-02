@@ -1,5 +1,11 @@
 <div class="row">
-    <div class="col-md-4 offset-md-1">
+    <div>
+        <button class="btn btn-success" routerLink="/tickets/edit/new" type="button">New Ticket</button>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-4">
         <!-- Search and filters -->
         <div class="card">
             <div class="card-body">
@@ -45,8 +51,8 @@
                 <td>
                     <!-- buttons here -->
                     <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-secondary" type="button">Edit</button>
-                        <button class="btn btn-danger" (click)="deleteTicket(ticket.id)" type="button">Delete</button>
+                        <button class="btn btn-secondary" routerLink="/tickets/edit/{{ticket.id}}" type="button">Edit</button>
+                        <button class="btn btn-danger btn-trash" (click)="deleteTicket(ticket.id)">X</button>
                     </div>
                 </td>
               </tr>
