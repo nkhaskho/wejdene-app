@@ -42,5 +42,18 @@
     </div>
   </nav>
   <br>
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col col-md-2" *ngIf="appStorage.getItem('token')">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" [ngClass]="{'bg-light': activeRoute === 'dashboard'}" (click)="navigate('dashboard')">Dashboard</li>
+        <li class="list-group-item" [ngClass]="{'bg-light': activeRoute === 'users'}" (click)="navigate('users')">Users management</li>
+        <li class="list-group-item" [ngClass]="{'bg-light': activeRoute === 'tickets'}" (click)="navigate('tickets')">Tickets</li>
+        <li class="list-group-item" [ngClass]="{'bg-light': activeRoute === 'categories'}" (click)="navigate('categories')">Categories</li>
+        <li class="list-group-item" [ngClass]="{'bg-light': activeRoute === 'stocks'}" (click)="navigate('stocks')">Stock</li>
+      </ul>
+    </div>
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

@@ -9,7 +9,8 @@ import { AuthService } from './services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'ITM';
+  title = 'Wimbee';
+  activeRoute: string = "dashboard";
   appStorage = localStorage;
 
   constructor(private router: Router,
@@ -19,6 +20,15 @@ export class AppComponent implements OnInit {
     if (!localStorage.getItem('token')) {
       this.authService.signOut();
       this.router.navigate(['/login']);
+    }
+  }
+
+  navigate(route: string) {
+    this.activeRoute = route;
+    try {
+      this.router.navigate([route]); 
+    } catch (error) {
+      this.router.navigate(['dashboard']);
     }
   }
 
