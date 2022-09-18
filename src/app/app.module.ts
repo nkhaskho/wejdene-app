@@ -15,6 +15,8 @@ import { TicketDetailsComponent } from './components/tickets/ticket-details/tick
 import { TicketsComponent } from './components/tickets/tickets/tickets.component';
 import { CategoriesComponent } from './components/categories/categories/categories.component';
 import { SubCategoriesComponent } from './components/sub-categories/sub-categories/sub-categories.component';
+import { StocksComponent } from './components/stocks/stocks/stocks.component';
+import { EditStockComponent } from './components/stocks/edit-stock/edit-stock.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { SubCategoriesComponent } from './components/sub-categories/sub-categori
     TicketDetailsComponent,
     TicketsComponent,
     CategoriesComponent,
-    SubCategoriesComponent
+    SubCategoriesComponent,
+    StocksComponent,
+    EditStockComponent
   ],
   imports: [
     BrowserModule,

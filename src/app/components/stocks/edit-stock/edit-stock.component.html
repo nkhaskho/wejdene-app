@@ -1,0 +1,50 @@
+
+<div class="row">
+    <div class="col-md-4">
+        <!-- Search and filters -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Stocks</h5>
+                <h6 *ngIf="stock.id==0" class="card-subtitle mb-2 text-muted">Add new stock</h6>
+                <h6 *ngIf="stock.id!=0" class="card-subtitle mb-2 text-muted">Update stock</h6>        
+                <br>
+                <div class="mb-3">
+                  <label class="form-label">Product name</label>
+                  <input type="email" [(ngModel)]="stock.name" class="form-control" aria-describedby="textHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Model</label>
+                    <input type="email" [(ngModel)]="stock.model" class="form-control" aria-describedby="textHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" (change)="changeCategory(stock.category)" [(ngModel)]="stock.category" aria-label="Default select example">
+                        <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Sub-Category</label>
+                    <select class="form-select" [(ngModel)]="stock.subcategory" aria-label="Default select example">
+                        <option *ngFor="let scat of subCategories" value="{{scat.id}}">{{scat.name}}</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Quantity</label>
+                  <input type="number" [(ngModel)]="stock.quantity" class="form-control" aria-describedby="textHelp">
+                </div>
+                <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
+                  {{ formResponse.message }}
+                </div>
+                <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                  {{ formResponse.error }}
+                </div>
+                <div class="text-end">
+                    <button type="submit" *ngIf="stock.id==0" (click)="save()" class="btn btn-success">Add stock</button>
+                    <button type="submit" *ngIf="stock.id!=0" (click)="save()" class="btn btn-success">Update stock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  

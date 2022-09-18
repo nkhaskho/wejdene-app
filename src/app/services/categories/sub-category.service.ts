@@ -16,6 +16,10 @@ export class SubCategoryService {
     return this.http.get<SubCategory[]>(this.endpoint);
   }
 
+  getSubcategoriesByCategoryId(id: number) {
+    return this.http.get<SubCategory[]>(`${this.endpoint}?category=${id}`);
+  }
+
   addSubcategory(subCategory: SubCategory) {
     return this.http.post<SubCategory>(this.endpoint, subCategory);
   }

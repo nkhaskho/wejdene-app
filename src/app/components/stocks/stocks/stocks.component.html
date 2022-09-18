@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-4">
+    <!-- Search and filters -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Stocks</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Search in stocks</h6>        
+            <br>
+            <div class="mb-3">
+              <label class="form-label">Product name</label>
+              <input type="email" [(ngModel)]="stockSearch.name" class="form-control" aria-describedby="textHelp">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Model</label>
+                <input type="email" [(ngModel)]="stockSearch.model" class="form-control" aria-describedby="textHelp">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" (change)="changeCategory(stockSearch.category)" [(ngModel)]="stockSearch.category" aria-label="Default select example">
+                    <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Sub-Category</label>
+                <select class="form-select" [(ngModel)]="stockSearch.subcategory" aria-label="Default select example">
+                    <option *ngFor="let scat of subCategories" value="{{scat.id}}">{{scat.name}}</option>
+                </select>
+            </div>
+            <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
+              {{ formResponse.message }}
+            </div>
+            <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+              {{ formResponse.error }}
+            </div>
+            <div class="text-end">
+                <button type="submit" (click)="searchStock()" class="btn btn-primary">Search stocks</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="col">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Model</th>
+                <th scope="col">SubCategory</th>
+                <th scope="col">Quantiry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let stock of stocks">
+                <th scope="row">{{ stock.id }}</th>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.model }}</td>
+                <td>{{ stock.subcategory }}</td>
+                <td>{{ stock.quantity }}</td>
+                <td>
+                    <!-- buttons here -->
+                    <div class="d-grid gap-2 d-md-block">
+                      <button class="btn btn-secondary" routerLink="/stocks/edit/{{stock.id}}" type="button">Edit</button>
+                      <button class="btn btn-danger btn-trash" (click)="deleteStock(stock.id)">X</button>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
