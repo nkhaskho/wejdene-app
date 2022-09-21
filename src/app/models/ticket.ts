@@ -4,6 +4,7 @@ export class Ticket {
     description: string = "";
     createdAt: string = "";
     closedAt: string = "";
-    status: string = "";
+    priority: string = "medium";
+    status: string = "on-going";
     createdBy: number = 0;
 }
