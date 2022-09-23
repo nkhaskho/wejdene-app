@@ -5,4 +5,5 @@ export class User {
     password: string = "";
     role: string = "user";
     phone: number = 0;
+    photo: string = "assets/images/user.png"
 }

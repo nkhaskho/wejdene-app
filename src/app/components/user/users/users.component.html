@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="offset-md-1">
+    <div class="col-md-4">
         <button class="btn btn-success" routerLink="/users/edit/new" type="button">Add User</button>
     </div>
 </div>
 <br>
 <div class="row">
-    <div class="col-md-4 offset-md-1">
+    <div class="col-md-4">
         <!-- Search and filters -->
         <div class="card">
             <div class="card-body">
@@ -14,19 +14,19 @@
                 <br>
                 <div class="mb-3">
                   <label class="form-label">Text search</label>
-                  <input type="email" class="form-control" aria-describedby="textHelp">
+                  <input type="text" [(ngModel)]="search" class="form-control" aria-describedby="textHelp">
                   <div id="textHelp" class="form-text">You can search by text in all fields or filter by role below.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Role</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="1">Collaborator</option>
-                        <option value="2">Agent</option>
-                        <option value="3">Admin</option>
+                    <select class="form-select" [(ngModel)]="selectedRole" aria-label="Default select example">
+                        <option value="user">Employee</option>
+                        <option value="agent">Technician</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div class="text-end">
-                    <button type="submit" (click)="search()" class="btn btn-secondary">Search</button>
+                    <button type="submit" (click)="searchUsers()" class="btn btn-secondary">Search</button>
                 </div>
             </div>
         </div>

@@ -9,6 +9,9 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UsersComponent implements OnInit {
 
+  search: string = '';
+  selectedRole: string = 'user';
+
   users: User[] = [];
   appStorage = localStorage;
 
@@ -16,8 +19,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  search() {
-    this.userService.getUsers().subscribe(
+  searchUsers() {
+    this.userService.getUsers(this.selectedRole, this.search).subscribe(
       res => this.users = res
     )
   }

@@ -13,8 +13,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers() {
-    return this.http.get<User[]>(this.endpoint);
+  getUsers(role: string, search: string) {
+    let url = `${this.endpoint}?`
+    if (search.length>0) url += `search=${search}`
+    if (role.length>0) url += `&role=${role}`
+    return this.http.get<User[]>(url);
   }
 
   getUserById(id: number) {
