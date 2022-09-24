@@ -7,4 +7,5 @@ export class Ticket {
     priority: string = "medium";
     status: string = "on-going";
     createdBy: number = 0;
+    assignee: number = 1;
 }

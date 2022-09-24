@@ -10,7 +10,6 @@ import { EditTicketComponent } from './components/tickets/edit-ticket/edit-ticke
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
 import { TicketsComponent } from './components/tickets/tickets/tickets.component';
 import { EditUserComponent } from './components/user/edit-user/edit-user.component';
-import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { UsersComponent } from './components/user/users/users.component';
 
 const routes: Routes = [
@@ -33,10 +32,6 @@ const routes: Routes = [
   {
     path: 'users/edit/:id',
     component: EditUserComponent
-  },
-  {
-    path: 'users/:id',
-    component: UserDetailsComponent
   },
   {
     path: 'tickets',

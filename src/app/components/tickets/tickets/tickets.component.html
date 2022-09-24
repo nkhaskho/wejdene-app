@@ -14,12 +14,12 @@
                 <br>
                 <div class="mb-3">
                   <label class="form-label">Text search</label>
-                  <input type="email" class="form-control" aria-describedby="textHelp">
-                  <div id="textHelp" class="form-text">You can search by text in all fields or filter by role below.</div>
+                  <input type="text" [(ngModel)]="search" class="form-control" aria-describedby="textHelp">
+                  <div id="textHelp" class="form-text">This will search in title and description field.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Priority</label>
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" [(ngModel)]="priority" aria-label="Default select example">
                         <option value="high">High</option>
                         <option value="medium">Medium</option>
                         <option value="low">Low</option>
@@ -27,14 +27,14 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="on_goin">On-going</option>
-                        <option value="in_progress">In progress</option>
+                    <select class="form-select" [(ngModel)]="status" aria-label="Default select example">
+                        <option value="on-goin">On-going</option>
+                        <option value="in-progress">In progress</option>
                         <option value="closed">Closed</option>
                     </select>
                 </div>
                 <div class="text-end">
-                    <button type="submit" (click)="search()" class="btn btn-secondary">Search</button>
+                    <button type="submit" (click)="searchTickets()" class="btn btn-secondary">Search</button>
                 </div>
             </div>
         </div>

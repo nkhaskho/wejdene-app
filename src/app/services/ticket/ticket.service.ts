@@ -12,8 +12,12 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-  getTickets() {
-    return this.http.get<Ticket[]>(this.endpoint)
+  getTickets(search: string, priority: string, status: string) {
+    let url = `${this.endpoint}?`
+    //if (search.length>0) url += `search=${search}`
+    //if (status.length>0) url += `status=${status}`
+    //if (priority.length>0) url += `&priority=${priority}`
+    return this.http.get<Ticket[]>(url)
   }
 
   addTicket(ticket: Ticket) {

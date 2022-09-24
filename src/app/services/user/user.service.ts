@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { User } from 'src/app/models/user';
 
 import { environment } from 'src/environments/environment';
@@ -25,7 +25,9 @@ export class UserService {
   }
 
   addUser(user: User) {
-    return this.http.post<User>(this.endpoint, user);
+    let head = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+    return this.http.post<User>(this.endpoint, user, {headers: head});
   }
 
   updateUser(user: User) {

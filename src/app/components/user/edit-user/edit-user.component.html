@@ -9,8 +9,12 @@
             <br>
             <div class="mb-3">
               <label class="form-label">Username</label>
-              <input type="email" [(ngModel)]="user.username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text text-secondary">Will be used for application access.</div>
+              <input type="text" [(ngModel)]="user.username" class="form-control" id="exampleInputEmail1" aria-describedby="usernamelHelp">
+              <div id="usernamelHelp" class="form-text text-secondary">Will be used for application access.</div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" [(ngModel)]="user.fullname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
               <label class="form-label">Email address</label>

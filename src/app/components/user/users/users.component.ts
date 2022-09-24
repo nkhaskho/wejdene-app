@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
   selectedRole: string = 'user';
 
   users: User[] = [];
+  selectedUser: User = new User();
   appStorage = localStorage;
 
   constructor(private userService: UserService) { }

@@ -10,13 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class TicketsComponent implements OnInit {
 
   tickets: Ticket[] = [];
+  priority: string = "high";
+  status: string = "on-going";
+  search: string = "";
 
   constructor(private ticketService: TicketService) { }
 
   ngOnInit(): void { }
 
-  search() {
-    this.ticketService.getTickets().subscribe(
+  searchTickets() {
+    this.ticketService.getTickets(this.search, this.priority, this.status).subscribe(
       res => this.tickets = res
     )
   }
