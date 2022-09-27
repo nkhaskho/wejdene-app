@@ -34,11 +34,17 @@
             <tbody>
               <tr *ngFor="let category of categories">
                 <th scope="row">{{ category.id }}</th>
-                <td>{{ category.name }}</td>
+                <td *ngIf="!category.edit">{{ category.name }}</td>
+                <td *ngIf="category.edit">
+                  <div class="mb-3">
+                    <input type="text" [(ngModel)]="category.name" class="form-control">
+                  </div>
+                </td>
                 <td>
                     <!-- buttons here -->
                     <div class="d-grid gap-2 d-md-block">
-                      <button class="btn btn-secondary" type="button">Edit</button>
+                      <button class="btn btn-primary" *ngIf="category.edit" (click)="editCategory(category)" type="button">Save</button>
+                      <button class="btn btn-secondary" *ngIf="!category.edit" (click)="category.edit=true" type="button">Edit</button>
                       <button class="btn btn-danger btn-trash" (click)="deleteCategory(category.id)">X</button>
                     </div>
                 </td>

@@ -37,6 +37,13 @@ export class CategoriesComponent implements OnInit {
     )
   }
 
+  editCategory(category: Category) {
+    this.categoryService.updateCategory(category).subscribe(
+      res => category.edit = false,
+      err => alert(err)
+    )
+  }
+
   async deleteCategory(id: number) {
     console.log(id);
     await this.categoryService.deleteCategory(id).subscribe(

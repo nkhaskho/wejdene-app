@@ -18,10 +18,12 @@ export class CategoryService {
   }
 
   addCategory(category: Category) {
+    delete category.edit;
     return this.http.post<Category>(this.endpoint, category);
   }
 
   updateCategory(category: Category) {
+    delete category.edit;
     return this.http.put(`${this.endpoint}/${category.id}`, category)
   }
 
