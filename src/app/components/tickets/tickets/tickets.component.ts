@@ -10,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class TicketsComponent implements OnInit {
 
   tickets: Ticket[] = [];
-  priority: string = "high";
-  status: string = "on-going";
+  priority: string = "";
+  status: string = "";
   search: string = "";
 
   constructor(private ticketService: TicketService) { }
