@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from "chart.js/auto";
+import { Ticket } from 'src/app/models/ticket';
+import { TicketService } from 'src/app/services/ticket/ticket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +13,15 @@ export class DashboardComponent implements OnInit {
   appStorage = localStorage;
   public Date = Date;
   public chart: any;
+  tickets: Ticket[]=[];
 
-  constructor() { }
+  constructor(private ticketService: TicketService) { }
 
   ngOnInit(): void {
     this.createChart();
+    this.ticketService.getTickets('', '', '').subscribe(
+      res => this.tickets = res
+    )
   }
 
   createChart(){
