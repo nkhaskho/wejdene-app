@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.createChart();
-    this.ticketService.getTickets('', '', '').subscribe(
+    this.ticketService.getUserTickets().subscribe(
       res => this.tickets = res
     )
   }

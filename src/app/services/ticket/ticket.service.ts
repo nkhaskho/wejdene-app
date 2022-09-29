@@ -20,6 +20,17 @@ export class TicketService {
     return this.http.get<Ticket[]>(url)
   }
 
+  getUserTickets() {
+    let url = this.endpoint;
+    if (localStorage.getItem('role')=='user') {
+      url += `?createdBy=${localStorage.getItem('id')}`
+    }
+    if (localStorage.getItem('role')=='agent') {
+      url += `?assignee=${localStorage.getItem('id')}`
+    }
+    return this.http.get<Ticket[]>(url)
+  }
+
   addTicket(ticket: Ticket) {
     return this.http.post<Ticket>(this.endpoint, ticket)
   }

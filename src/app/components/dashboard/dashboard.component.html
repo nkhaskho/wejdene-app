@@ -10,35 +10,36 @@
             <canvas  id="MyChart" >{{ chart }}</canvas>
         </div>      
     </div>
-    <div class="row">
-        <br>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Priority</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let ticket of tickets">
-                <th scope="row">{{ ticket.id }}</th>
-                <td>{{ ticket.title }}</td>
-                <td>{{ ticket.description }}</td>
-                <td>{{ ticket.priority }}</td>
-                <td>{{ ticket.status }}</td>
-                <td>
-                    <!-- buttons here -->
-                    <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-secondary" routerLink="/tickets/edit/{{ticket.id}}" type="button">Edit</button>
-                    </div>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-  
-    </div>
+</div>
+<br>
+<div class="row">
+  <div class="h4 text-primary">My tickets</div>
+  <br><br>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <th scope="row">{{ ticket.id }}</th>
+          <td>{{ ticket.title }}</td>
+          <td>{{ ticket.description }}</td>
+          <td>{{ ticket.priority }}</td>
+          <td>{{ ticket.status }}</td>
+          <td>
+              <!-- buttons here -->
+              <div class="d-grid gap-2 d-md-block">
+                  <button class="btn btn-secondary" routerLink="/tickets/edit/{{ticket.id}}" type="button">Edit</button>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+  </table>
 </div>
