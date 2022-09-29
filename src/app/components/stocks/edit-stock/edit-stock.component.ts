@@ -42,21 +42,25 @@ export class EditStockComponent implements OnInit {
   }
 
   save() {
-    if (this.stock.id == 0) {
-      // Add new stock
-      this.stockService.addStock(this.stock).subscribe(
-        res => {
-          this.stock = new Stock();
-          this.formResponse.setMessage(`Stock "${res.name}" added successfully.`)
-        }
-      ) 
+    if (this.stock.name == '' || this.stock.model=='' || this.stock.subcategory==0) {
+      this.formResponse.setError('Please fill all required fields.')
     } else {
-      // update existing one
-      this.stockService.updateStock(this.stock).subscribe(
-        res => {
-          this.formResponse.setMessage(`Stock "${res.name}" updated successfully.`)
-        }
-      ) 
+      if (this.stock.id == 0) {
+        // Add new stock
+        this.stockService.addStock(this.stock).subscribe(
+          res => {
+            this.stock = new Stock();
+            this.formResponse.setMessage(`Stock "${res.name}" added successfully.`)
+          }
+        ) 
+      } else {
+        // update existing one
+        this.stockService.updateStock(this.stock).subscribe(
+          res => {
+            this.formResponse.setMessage(`Stock "${res.name}" updated successfully.`)
+          }
+        ) 
+      }
     }
   }
 

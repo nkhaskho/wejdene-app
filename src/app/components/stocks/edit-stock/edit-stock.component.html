@@ -9,11 +9,11 @@
                 <h6 *ngIf="stock.id!=0" class="card-subtitle mb-2 text-muted">Update stock</h6>        
                 <br>
                 <div class="mb-3">
-                  <label class="form-label">Product name</label>
+                  <label class="form-label">Product name <b>*</b></label>
                   <input type="email" [(ngModel)]="stock.name" class="form-control" aria-describedby="textHelp">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Model</label>
+                    <label class="form-label">Model <b>*</b></label>
                     <input type="email" [(ngModel)]="stock.model" class="form-control" aria-describedby="textHelp">
                 </div>
                 <div class="mb-3">
@@ -23,7 +23,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Sub-Category</label>
+                    <label class="form-label">Sub-Category <b>*</b></label>
                     <select class="form-select" [(ngModel)]="stock.subcategory" aria-label="Default select example">
                         <option *ngFor="let scat of subCategories" value="{{scat.id}}">{{scat.name}}</option>
                     </select>
@@ -35,7 +35,7 @@
                 <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
                   {{ formResponse.message }}
                 </div>
-                <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+                <div *ngIf="formResponse.error.length>0" class="alert alert-danger" role="alert">
                   {{ formResponse.error }}
                 </div>
                 <div class="text-end">
