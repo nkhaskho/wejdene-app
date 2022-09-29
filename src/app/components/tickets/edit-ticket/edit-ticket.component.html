@@ -8,12 +8,12 @@
               <h6 *ngIf="ticket.id==0" class="card-subtitle mb-2 text-muted">Add Ticket</h6>     
               <br>
               <div class="mb-3">
-                  <label class="form-label">Title</label>
-                  <input [(ngModel)]="ticket.title" class="form-control" required="">
+                  <label class="form-label">Title <b>*</b></label>
+                  <input minlength="12" [(ngModel)]="ticket.title" class="form-control" required>
               </div>
               <div class="mb-3">
-                  <label class="form-label">Description</label>
-                  <textarea [(ngModel)]="ticket.description" rows="3" class="form-control" required="">
+                  <label class="form-label">Description <b>*</b></label>
+                  <textarea minlength="25" [(ngModel)]="ticket.description" rows="3" class="form-control" required>
                   </textarea>
               </div>
               <div class="mb-3">
@@ -35,7 +35,7 @@
               <div *ngIf="formResponse.message.length>0" class="alert alert-success" role="alert">
                   {{ formResponse.message }}
               </div>
-              <div *ngIf="formResponse.error.length>0" class="alert alert-warning" role="alert">
+              <div *ngIf="formResponse.error.length>0" class="alert alert-danger" role="alert">
                   {{ formResponse.error }}
               </div>
               <div class="text-end">

@@ -28,25 +28,30 @@ export class EditTicketComponent implements OnInit {
   }
 
   save() {
-    if (this.ticket.id == 0) {
-      // add new ticket
-      this.ticket.createdBy = parseInt(localStorage.getItem('id') || '0')
-      this.ticketService.addTicket(this.ticket).subscribe(
-        res => {
-          this.ticket = new Ticket();
-          this.formResponse.setMessage('Saved successfully.')
-        },
-        err => this.formResponse.setError('Could not add ticket')
-      )
-    } else { // update existing
-      this.ticketService.updateTicket(this.ticket).subscribe(
-        res => {
-          this.ticket = res;
-          this.formResponse.setMessage('Updated successfully.')
-        },
-        err => this.formResponse.setError('Could not update ticket')
-      )
+    if (this.ticket.title=="" || this.ticket.description=="") {
+      this.formResponse.setError('Please fill required fields')
+    } else {
+      if (this.ticket.id == 0) {
+        // add new ticket
+        this.ticket.createdBy = parseInt(localStorage.getItem('id') || '0')
+        this.ticketService.addTicket(this.ticket).subscribe(
+          res => {
+            this.ticket = new Ticket();
+            this.formResponse.setMessage('Saved successfully.')
+          },
+          err => this.formResponse.setError('Could not add ticket')
+        )
+      } else { // update existing
+        this.ticketService.updateTicket(this.ticket).subscribe(
+          res => {
+            this.ticket = res;
+            this.formResponse.setMessage('Updated successfully.')
+          },
+          err => this.formResponse.setError('Could not update ticket')
+        )
+      }
     }
+    
   }
 
 }
