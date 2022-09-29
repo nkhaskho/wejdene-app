@@ -1,3 +1,7 @@
+<div class="col">
+  <button routerLink="/stocks/edit/new" class="btn btn-success">Add stock</button>
+</div>
+<br>
 <div class="row">
   <div class="col-md-4">
     <!-- Search and filters -->
@@ -7,22 +11,18 @@
             <h6 class="card-subtitle mb-2 text-muted">Search in stocks</h6>        
             <br>
             <div class="mb-3">
-              <label class="form-label">Product name</label>
-              <input type="email" [(ngModel)]="stockSearch.name" class="form-control" aria-describedby="textHelp">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Model</label>
-                <input type="email" [(ngModel)]="stockSearch.model" class="form-control" aria-describedby="textHelp">
+              <label class="form-label">Search text</label>
+              <input type="email" [(ngModel)]="searchText" class="form-control" aria-describedby="textHelp">
             </div>
             <div class="mb-3">
                 <label class="form-label">Category</label>
-                <select class="form-select" (change)="changeCategory(stockSearch.category)" [(ngModel)]="stockSearch.category" aria-label="Default select example">
+                <select class="form-select" (change)="changeCategory(selectedCategory)" [(ngModel)]="selectedCategory" aria-label="Default select example">
                     <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Sub-Category</label>
-                <select class="form-select" [(ngModel)]="stockSearch.subcategory" aria-label="Default select example">
+                <select class="form-select" [(ngModel)]="selectedSubCategory" aria-label="Default select example">
                     <option *ngFor="let scat of subCategories" value="{{scat.id}}">{{scat.name}}</option>
                 </select>
             </div>

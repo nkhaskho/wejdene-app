@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
@@ -13,12 +14,17 @@ export class StockService {
 
   constructor(private http: HttpClient) { }
 
-  getStocks() {
-    return this.http.get<Stock[]>(this.endpoint)
+  getStocks(search: string, subCategory: number=0) {
+    let url = `${this.endpoint}?`
+    if (search.length>0) url += `search=${search}`
+    if (subCategory>0) url += `&subcategory=${subCategory}`
+    return this.http.get<Stock[]>(url)
   }
 
-  addStock(stock: Stock): Observable<Stock> {
-    return this.http.post<Stock>(this.endpoint, stock)
+  addStock(stock: Stock) {
+    let head = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`)
+    return this.http.post<Stock>(this.endpoint, stock, {headers: head})
   }
 
   getStockById(id: number) {

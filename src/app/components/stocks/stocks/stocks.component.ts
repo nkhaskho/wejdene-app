@@ -15,10 +15,12 @@ import { StockService } from 'src/app/services/stock.service';
 export class StocksComponent implements OnInit {
 
   stocks: Stock[] = [];
-  stockSearch = new Stock();
   formResponse = new FormResponse();
   categories: Category[] = [];
   subCategories: SubCategory[] = [];
+  selectedCategory: number = 0;
+  selectedSubCategory: number = 0;
+  searchText: string = "";
 
   constructor(private stockService: StockService,
               private categoryService: CategoryService,
@@ -45,7 +47,7 @@ export class StocksComponent implements OnInit {
 
   
   searchStock() {
-    this.stockService.getStocks().subscribe(
+    this.stockService.getStocks(this.searchText, this.selectedSubCategory).subscribe(
       res => this.stocks = res
     )
   }

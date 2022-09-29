@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Category</label>
-                    <select class="form-select" (change)="changeCategory(stock.category)" [(ngModel)]="stock.category" aria-label="Default select example">
+                    <select class="form-select" (change)="changeCategory(selectedCategory)" [(ngModel)]="selectedCategory" aria-label="Default select example">
                         <option *ngFor="let cat of categories" value="{{cat.id}}">{{cat.name}}</option>
                     </select>
                 </div>

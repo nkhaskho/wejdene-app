@@ -17,6 +17,7 @@ export class EditStockComponent implements OnInit {
 
   formResponse = new FormResponse();
   categories: Category[] = [];
+  selectedCategory: number = 0;
   subCategories: SubCategory[] = [];
   stock = new Stock();
 
@@ -26,8 +27,8 @@ export class EditStockComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let stockId = this.activatedRoute.snapshot.params['id']
-    if (stockId != 0) {
+    let stockId = this.activatedRoute.snapshot.params['id'] || '0'
+    if (stockId != 'new') {
       this.stockService.getStockById(parseInt(stockId)).subscribe(
         res => this.stock = res
       )
@@ -68,7 +69,23 @@ export class EditStockComponent implements OnInit {
   }
 
   addStock() {
-    
+    if (this.stock.id == 0) {
+      this.stockService.addStock(this.stock).subscribe(
+        res => {
+          this.formResponse.setMessage('Stock added successfully.');
+          this.stock = new Stock();
+        },
+        err => this.formResponse.setError('Error while adding stock.')
+      )
+    } else {
+      this.stockService.updateStock(this.stock).subscribe(
+        res => {
+          this.formResponse.setMessage('Stock updated successfully.');
+          this.stock = new Stock();
+        },
+        err => this.formResponse.setError('Error while updaing stock.')
+      )
+    }
   }
 
 
