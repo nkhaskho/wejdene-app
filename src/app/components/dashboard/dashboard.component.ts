@@ -17,11 +17,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(private ticketService: TicketService) { }
 
-  ngOnInit(): void {
-    this.createChart();
-    this.ticketService.getUserTickets().subscribe(
-      res => this.tickets = res
-    )
+  async ngOnInit() {
+    await this.ticketService.getUserTickets().subscribe(
+      res => {
+        this.tickets = res;
+        this.createChart();
+      }
+    );
+    
   }
 
   createChart(){
@@ -35,7 +38,7 @@ export class DashboardComponent implements OnInit {
         ],
         datasets: [{
           label: 'My First Dataset',
-          data: [300, 50, 100],
+          data: this.getStats(),
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
@@ -48,6 +51,17 @@ export class DashboardComponent implements OnInit {
         aspectRatio:2.5
       }   
     });
+  }
+
+  getStats() {
+    let ticketsStatus = [0, 0, 0];
+    this.tickets.forEach(ticket => {
+      if (ticket.status=='on-going') ticketsStatus[0] += 1;
+      if (ticket.status=='closed') ticketsStatus[1] += 1;
+      if (ticket.status=='in-progress') ticketsStatus[2] += 1;
+    });
+    return ticketsStatus;
+
   }
 
 
