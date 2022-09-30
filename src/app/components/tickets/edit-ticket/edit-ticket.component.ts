@@ -1,3 +1,5 @@
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from './../../../models/user';
 import { ActivatedRoute } from '@angular/router';
 import { TicketService } from './../../../services/ticket/ticket.service';
 import { FormResponse } from './../../../models/form-response';
@@ -12,11 +14,13 @@ import { Component, OnInit } from '@angular/core';
 export class EditTicketComponent implements OnInit {
 
   formResponse = new FormResponse();
+  agents: User[] = [];
 
   ticket = new Ticket();
 
   constructor(private ticketService: TicketService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   async ngOnInit() {
     let ticketId = await this.activatedRoute.snapshot.params['id'] || '0'
@@ -25,6 +29,9 @@ export class EditTicketComponent implements OnInit {
         res => this.ticket = res
       )
     }
+    this.userService.getUsers('agent', '').subscribe(
+      res => this.agents = res
+    )
   }
 
   save() {
