@@ -21,6 +21,7 @@ export class StocksComponent implements OnInit {
   selectedCategory: number = 0;
   selectedSubCategory: number = 0;
   searchText: string = "";
+  appStorage = localStorage; // ref to local storage
 
   constructor(private stockService: StockService,
               private categoryService: CategoryService,

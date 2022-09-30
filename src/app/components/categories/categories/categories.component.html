@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-4">
+    <div *ngIf="appStorage.getItem('role')=='admin'" class="col-md-4">
         <!-- Search and filters -->
         <div class="card">
             <div class="card-body">
@@ -44,8 +44,8 @@
                     <!-- buttons here -->
                     <div class="d-grid gap-2 d-md-block">
                       <button class="btn btn-primary" *ngIf="category.edit" (click)="editCategory(category)" type="button">Save</button>
-                      <button class="btn btn-secondary" *ngIf="!category.edit" (click)="category.edit=true" type="button">Edit</button>
-                      <button class="btn btn-danger btn-trash" (click)="deleteCategory(category.id)">X</button>
+                      <button *ngIf="appStorage.getItem('role')=='admin' && !category.edit" class="btn btn-secondary" (click)="category.edit=true" type="button">Edit</button>
+                      <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-danger btn-trash" (click)="deleteCategory(category.id)">X</button>
                     </div>
                 </td>
               </tr>

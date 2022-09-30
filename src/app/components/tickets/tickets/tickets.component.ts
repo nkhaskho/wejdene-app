@@ -25,7 +25,9 @@ export class TicketsComponent implements OnInit {
   }
 
   deleteTicket(id: number) {
-
+    this.ticketService.deleteTicket(id).subscribe(
+      res => this.searchTickets()
+    )
   }
 
 }

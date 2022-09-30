@@ -13,6 +13,7 @@ export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
   newCategory = new Category();
   formResponse = new FormResponse();
+  appStorage = localStorage; 
 
   constructor(private categoryService: CategoryService) { }
 

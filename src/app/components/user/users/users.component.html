@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <button class="btn btn-success" routerLink="/users/edit/new" type="button">Add User</button>
+        <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-success" routerLink="/users/edit/new" type="button">Add User</button>
     </div>
 </div>
 <br>
@@ -48,7 +48,7 @@
                 </div>
                 <span class="badge">
                   <button (click)="selectedUser=user" data-bs-toggle="modal" data-bs-target="#userModal" class="btn btn-info btn-sm">Details</button>
-                  <button routerLink="/users/edit/{{user.id}}" class="btn btn-warning btn-sm btn-trash">Edit</button>
+                  <button *ngIf="appStorage.getItem('role')=='admin' || appStorage.getItem('id')==user.id.toString()" routerLink="/users/edit/{{user.id}}" class="btn btn-warning btn-sm btn-trash">Edit</button>
                 </span>
 
             </li>

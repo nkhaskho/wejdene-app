@@ -1,5 +1,5 @@
 <div class="col">
-  <button routerLink="/stocks/edit/new" class="btn btn-success">Add stock</button>
+  <button *ngIf="appStorage.getItem('role')=='admin'" routerLink="/stocks/edit/new" class="btn btn-success">Add stock</button>
 </div>
 <br>
 <div class="row">
@@ -59,8 +59,8 @@
                 <td>
                     <!-- buttons here -->
                     <div class="d-grid gap-2 d-md-block">
-                      <button class="btn btn-secondary" routerLink="/stocks/edit/{{stock.id}}" type="button">Edit</button>
-                      <button class="btn btn-danger btn-trash" (click)="deleteStock(stock.id)">X</button>
+                      <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-secondary" routerLink="/stocks/edit/{{stock.id}}" type="button">Edit</button>
+                      <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-danger btn-trash" (click)="deleteStock(stock.id)">X</button>
                     </div>
                 </td>
               </tr>
