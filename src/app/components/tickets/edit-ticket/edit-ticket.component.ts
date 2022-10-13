@@ -17,6 +17,7 @@ export class EditTicketComponent implements OnInit {
   agents: User[] = [];
 
   ticket = new Ticket();
+  appStorage = localStorage ;
 
   constructor(private ticketService: TicketService,
               private activatedRoute: ActivatedRoute,
@@ -59,6 +60,10 @@ export class EditTicketComponent implements OnInit {
       }
     }
     
+  }
+  solve(){
+    this.ticket.status='closed'
+    this.save()
   }
 
 }

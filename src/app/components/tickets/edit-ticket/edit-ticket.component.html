@@ -46,6 +46,7 @@
               </div>
               <div class="text-end">
                     <button type="submit" (click)="save()" class="btn btn-success">Save</button>
+                    <button type="submit" *ngIf="appStorage.getItem('role')!='user'" (click)="solve()" class="btn btn-primary">Solve</button>
               </div>
           </div>
       </div>

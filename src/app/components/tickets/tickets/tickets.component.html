@@ -59,10 +59,10 @@
                 <td>{{ ticket.priority }}</td>
                 <td>{{ ticket.status }}</td>
                 <td>
-                    <!-- buttons here -->
+                    <!-- buttons here || appStorage.getItem('id')==ticket.assignee.toString() || appStorage.getItem('id')==ticket.createdBy.toString() --> 
                     <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-secondary" routerLink="/tickets/edit/{{ticket.id}}" type="button">Edit</button>
-                        <button class="btn btn-danger btn-trash" (click)="deleteTicket(ticket.id)">X</button>
+                        <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-secondary" routerLink="/tickets/edit/{{ticket.id}}" type="button">Edit</button>
+                        <button *ngIf="appStorage.getItem('role')=='admin'" class="btn btn-danger btn-trash" (click)="deleteTicket(ticket.id)">X</button>
                     </div>
                 </td>
               </tr>

@@ -13,6 +13,7 @@ export class TicketsComponent implements OnInit {
   priority: string = "";
   status: string = "";
   search: string = "";
+  appStorage = localStorage ;
 
   constructor(private ticketService: TicketService) { }
 
